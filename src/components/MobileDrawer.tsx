@@ -46,12 +46,12 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         <div className="p-5 border-b border-brand-cardBorder flex items-center justify-between bg-[#070709]">
           <div className="flex items-center gap-3">
             {/* Tour Crest */}
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#1C1829] to-[#0A0812] border border-brand-purple-500/30 flex items-center justify-center text-white shadow-sm shrink-0">
-              <svg className="w-5 h-5 text-white" viewBox="0 0 32 32" fill="none">
-                <line x1="12" y1="6" x2="12" y2="26" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
-                <path d="M12 7.5L24 12.5L12 17.5V7.5Z" fill="#9333EA" stroke="#A855F7" strokeWidth="1" />
-                <path d="M7 25.5C10 24 22 24 25 25.5" stroke="#A855F7" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#1C1829] to-[#0A0812] border border-brand-purple-500/30 flex items-center justify-center p-1 text-white shadow-sm shrink-0">
+              <img
+                src="/images/logo-icon.png"
+                alt="David Banks Golf Crest"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)]"
+              />
             </div>
             <div>
               <div className="flex items-center gap-1.5">

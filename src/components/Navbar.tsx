@@ -56,17 +56,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               aria-label="David Banks Golf - Return to Homepage"
             >
               {/* Tour Flag Emblem */}
-              <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-[#1C1829] via-[#120F1C] to-[#0A0812] border border-brand-purple-500/30 group-hover:border-brand-purple-400/60 p-0.5 shadow-[0_4px_20px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-300 group-hover:scale-[1.03] shrink-0 flex items-center justify-center">
-                <svg className="w-6 h-6 text-white transition-transform duration-300 group-hover:scale-105" viewBox="0 0 32 32" fill="none">
-                  {/* Stylized Flag Pole */}
-                  <line x1="12" y1="6" x2="12" y2="26" stroke="#FFFFFF" strokeWidth="1.8" strokeLinecap="round" />
-                  
-                  {/* Tour Pin Pennant */}
-                  <path d="M12 7.5L24 12.5L12 17.5V7.5Z" fill="#9333EA" stroke="#A855F7" strokeWidth="1" strokeLinejoin="round" />
-                  
-                  {/* Golf Green / Base Turf Arc */}
-                  <path d="M7 25.5C10 24 22 24 25 25.5" stroke="#A855F7" strokeWidth="1.5" strokeLinecap="round" />
-                </svg>
+              <div className="relative w-11 h-11 rounded-xl bg-gradient-to-br from-[#1C1829] via-[#120F1C] to-[#0A0812] border border-brand-purple-500/30 group-hover:border-brand-purple-400/60 p-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.15)] transition-all duration-300 group-hover:scale-[1.03] shrink-0 flex items-center justify-center">
+                <img
+                  src="/images/logo-icon.png"
+                  alt="David Banks Golf Crest"
+                  className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(168,85,247,0.4)] transition-transform duration-300 group-hover:scale-105"
+                />
               </div>
 
               {/* Brand Wordmark */}

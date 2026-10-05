@@ -15,12 +15,14 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
           <div className="space-y-3 max-w-sm">
             <button
               onClick={() => setCurrentPage('home')}
-              className="text-left group focus:outline-none"
+              className="text-left group focus:outline-none block"
             >
-              <span className="font-display font-black text-2xl tracking-wider text-white block">
-                DAVID BANKS <span className="text-purple-400 font-extrabold text-xs uppercase tracking-widest ml-1">GOLF</span>
-              </span>
-              <span className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-semibold block mt-1">
+              <img
+                src="/images/logo.png"
+                alt="David Banks Golf"
+                className="h-20 sm:h-24 w-auto object-contain mb-3 drop-shadow-[0_0_20px_rgba(168,85,247,0.25)] group-hover:scale-105 transition-transform duration-300"
+              />
+              <span className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-semibold block">
                 PGA of Canada • Ontario Champion
               </span>
             </button>
