@@ -9,7 +9,6 @@ import {
   Target,
   Sparkles,
   Zap,
-  Activity,
   Users,
   ChevronRight,
   Calendar,
@@ -145,34 +144,6 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedP
             <p className="text-base sm:text-lg text-brand-muted max-w-2xl leading-relaxed">
               We combine motor skill science with tour-level 3D biofeedback to build a swing that actually holds up on the course. Whether you are introducing your junior to the game, joining our women’s clinics, or striving to break 80, we give you a clear, prioritized roadmap to lower scores.
             </p>
-
-            {/* Bullet Value Highlights with Smooth Glide Navigation */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-              <button
-                type="button"
-                onClick={() => smoothGlideTo('#tech-section', { offset: -80, duration: 1.35 })}
-                className="flex items-center gap-2 text-xs font-medium text-brand-light bg-brand-surface/70 hover:bg-brand-surface hover:border-brand-purple-500/50 px-3 py-2 rounded-lg border border-white/5 transition-all text-left group"
-              >
-                <Zap className="w-4 h-4 text-brand-purple-400 group-hover:scale-110 transition-transform shrink-0" />
-                <span>Smarter Practice</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => smoothGlideTo('#approach-section', { offset: -80, duration: 1.35 })}
-                className="flex items-center gap-2 text-xs font-medium text-brand-light bg-brand-surface/70 hover:bg-brand-surface hover:border-brand-purple-500/50 px-3 py-2 rounded-lg border border-white/5 transition-all text-left group"
-              >
-                <Activity className="w-4 h-4 text-brand-purple-400 group-hover:scale-110 transition-transform shrink-0" />
-                <span>Faster Progress</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => smoothGlideTo('#programs-section', { offset: -80, duration: 1.35 })}
-                className="flex items-center gap-2 text-xs font-medium text-brand-light bg-brand-surface/70 hover:bg-brand-surface hover:border-emerald-500/50 px-3 py-2 rounded-lg border border-white/5 transition-all text-left group"
-              >
-                <Target className="w-4 h-4 text-emerald-400 group-hover:scale-110 transition-transform shrink-0" />
-                <span>Better Course Scores</span>
-              </button>
-            </div>
 
             {/* Primary Call to Actions */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-4">
