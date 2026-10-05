@@ -1,0 +1,370 @@
+@import 'lenis/dist/lenis.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    border-color: #1F1F2C;
+  }
+  
+  html {
+    color-scheme: dark;
+  }
+
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  body {
+    background-color: #0A0A0D;
+    color: #F4F4F8;
+    overflow-x: hidden;
+  }
+
+  /* Custom Athletic Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0A0D;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #2D1B4E;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7E22CE;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.45);
+  }
+  .bg-radial-purple {
+    background: radial-gradient(circle at 50% 0%, rgba(126, 34, 206, 0.22) 0%, rgba(10, 10, 13, 0) 70%);
+  }
+  .bg-card-gradient {
+    background: linear-gradient(180deg, rgba(24, 24, 34, 0.75) 0%, rgba(18, 18, 24, 0.95) 100%);
+  }
+  .border-purple-glow {
+    box-shadow: 0 0 15px -3px rgba(147, 51, 234, 0.25);
+  }
+}
+
+/* ========================================================================= */
+/* PURE CSS COUNTING NUMBER ANIMATIONS (@property + counter-reset)          */
+/* Spec-compliant modern CSS counter animations                              */
+/* ========================================================================= */
+@property --num-stat-years {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --num-stat-coach {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --num-stat-champion {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --num-stat-sensors {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes count-up-years {
+  from {
+    --num-stat-years: 0;
+  }
+  to {
+    --num-stat-years: 40;
+  }
+}
+
+@keyframes count-up-coach {
+  from {
+    --num-stat-coach: 0;
+  }
+  to {
+    --num-stat-coach: 50;
+  }
+}
+
+@keyframes count-up-champion {
+  from {
+    --num-stat-champion: 0;
+  }
+  to {
+    --num-stat-champion: 2025;
+  }
+}
+
+@keyframes count-up-sensors {
+  from {
+    --num-stat-sensors: 0;
+  }
+  to {
+    --num-stat-sensors: 100;
+  }
+}
+
+/* Stat 1: 40+ Years */
+.counter-stat-years {
+  counter-reset: num-years var(--num-stat-years);
+}
+.counter-stat-years.animate-count {
+  animation: count-up-years 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.counter-stat-years::after {
+  content: counter(num-years) "+";
+}
+
+/* Stat 2: Top 50 */
+.counter-stat-coach {
+  counter-reset: num-coach var(--num-stat-coach);
+}
+.counter-stat-coach.animate-count {
+  animation: count-up-coach 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.counter-stat-coach::after {
+  content: counter(num-coach);
+}
+
+/* Stat 3: 2025 PGA Champion */
+.counter-stat-champion {
+  counter-reset: num-champion var(--num-stat-champion);
+}
+.counter-stat-champion.animate-count {
+  animation: count-up-champion 2.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.counter-stat-champion::after {
+  content: counter(num-champion);
+}
+
+/* Stat 4: 100% Sensors */
+.counter-stat-sensors {
+  counter-reset: num-sensors var(--num-stat-sensors);
+}
+.counter-stat-sensors.animate-count {
+  animation: count-up-sensors 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.counter-stat-sensors::after {
+  content: counter(num-sensors) "%";
+}
+
+/* ========================================================================= */
+/* TESTIMONIAL REVIEW STAT COUNTERS (@property + CSS counter-reset)          */
+/* ========================================================================= */
+@property --num-stat-handicap-w {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+@property --num-stat-handicap-d {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+@property --num-stat-enjoyment {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+@property --num-stat-qualifiers {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+@property --num-stat-rating-w {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes count-up-handicap-w {
+  from { --num-stat-handicap-w: 0; }
+  to { --num-stat-handicap-w: 6; }
+}
+@keyframes count-up-handicap-d {
+  from { --num-stat-handicap-d: 0; }
+  to { --num-stat-handicap-d: 8; }
+}
+@keyframes count-up-enjoyment {
+  from { --num-stat-enjoyment: 0; }
+  to { --num-stat-enjoyment: 100; }
+}
+@keyframes count-up-qualifiers {
+  from { --num-stat-qualifiers: 0; }
+  to { --num-stat-qualifiers: 45; }
+}
+@keyframes count-up-rating-w {
+  from { --num-stat-rating-w: 0; }
+  to { --num-stat-rating-w: 5; }
+}
+
+.counter-stat-handicap {
+  counter-reset: handicap-w var(--num-stat-handicap-w) handicap-d var(--num-stat-handicap-d);
+}
+.counter-stat-handicap.animate-count {
+  animation: 
+    count-up-handicap-w 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    count-up-handicap-d 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.counter-stat-handicap::after {
+  content: counter(handicap-w) "." counter(handicap-d);
+}
+
+.counter-stat-enjoyment {
+  counter-reset: num-enjoyment var(--num-stat-enjoyment);
+}
+.counter-stat-enjoyment.animate-count {
+  animation: count-up-enjoyment 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.counter-stat-enjoyment::after {
+  content: counter(num-enjoyment) "%";
+}
+
+.counter-stat-qualifiers {
+  counter-reset: num-qualifiers var(--num-stat-qualifiers);
+}
+.counter-stat-qualifiers.animate-count {
+  animation: count-up-qualifiers 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.counter-stat-qualifiers::after {
+  content: counter(num-qualifiers) "+";
+}
+
+.counter-stat-rating {
+  counter-reset: num-rating-w var(--num-stat-rating-w);
+}
+.counter-stat-rating.animate-count {
+  animation: count-up-rating-w 2.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.counter-stat-rating::after {
+  content: counter(num-rating-w) ".0 ★";
+}
+
+
+/* Stat tile hover enhancements */
+.stat-card-glow {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.stat-card-glow:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+/* ========================================================================= */
+/* MENUHOVER: SHIMMER UNDERLINE HOVER ANIMATION                              */
+/* A smooth shimmering underline with animated gradient shine                */
+/* ========================================================================= */
+.nav-link-shimmer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.nav-link-shimmer .shimmer-line {
+  position: absolute;
+  bottom: 2px;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  background: linear-gradient(
+    90deg,
+    rgba(147, 51, 234, 0.3) 0%,
+    #9333EA 22%,
+    #C084FC 42%,
+    #FFFFFF 50%,
+    #C084FC 58%,
+    #9333EA 78%,
+    rgba(147, 51, 234, 0.3) 100%
+  );
+  background-size: 250% 100%;
+  background-position: 100% 0;
+}
+
+/* Hover state on any link: expands underline and sweeps gradient shimmer */
+.nav-link-shimmer:hover .shimmer-line {
+  opacity: 1;
+  transform: scaleX(1);
+  animation: nav-shimmer-sweep 1.3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  box-shadow: 0 0 10px rgba(192, 132, 252, 0.65), 0 0 4px rgba(255, 255, 255, 0.7);
+}
+
+/* Active page link: persistently visible underline with athletic purple glow */
+.nav-link-shimmer.is-active .shimmer-line {
+  opacity: 1;
+  transform: scaleX(1);
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.5);
+  background: linear-gradient(
+    90deg,
+    rgba(147, 51, 234, 0.4) 0%,
+    #9333EA 25%,
+    #C084FC 50%,
+    #9333EA 75%,
+    rgba(147, 51, 234, 0.4) 100%
+  );
+  background-size: 250% 100%;
+}
+
+/* When active link is hovered: intensified shimmer beam sweep */
+.nav-link-shimmer.is-active:hover .shimmer-line {
+  animation: nav-shimmer-sweep 1.1s linear infinite;
+  background: linear-gradient(
+    90deg,
+    rgba(147, 51, 234, 0.3) 0%,
+    #9333EA 22%,
+    #C084FC 42%,
+    #FFFFFF 50%,
+    #C084FC 58%,
+    #9333EA 78%,
+    rgba(147, 51, 234, 0.3) 100%
+  );
+  background-size: 250% 100%;
+  box-shadow: 0 0 14px rgba(192, 132, 252, 0.85), 0 0 6px #ffffff;
+}
+
+@keyframes nav-shimmer-sweep {
+  0% {
+    background-position: 250% 0;
+  }
+  100% {
+    background-position: -250% 0;
+  }
+}
+
