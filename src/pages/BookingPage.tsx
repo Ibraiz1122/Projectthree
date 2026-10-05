@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import emailjs from '@emailjs/browser';
 import type { NavPage, BookingFormData } from '../types';
 import { programsData } from '../data/programsData';
 import {
@@ -11,8 +12,13 @@ import {
   ShieldCheck,
   ArrowRight,
   ArrowLeft,
-  Award
+  Award,
+  Loader2
 } from 'lucide-react';
+
+const EMAILJS_SERVICE_ID = 'service_ik00usp';
+const EMAILJS_TEMPLATE_ID = 'template_7paa1u4';
+const EMAILJS_PUBLIC_KEY = '-QtdiZo4OcnAjVBCI';
 
 interface BookingPageProps {
   setCurrentPage: (page: NavPage) => void;
@@ -25,6 +31,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({
 }) => {
   const [step, setStep] = useState<number>(1);
   const [bookingSuccess, setBookingSuccess] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   // Form State
   const [formData, setFormData] = useState<BookingFormData>(() => {
@@ -57,12 +64,54 @@ export const BookingPage: React.FC<BookingPageProps> = ({
 
   const currentSelectedProgram = programsData.find((p) => p.id === formData.programId) || programsData[0];
 
-  const handleNextStep = (e: React.FormEvent) => {
+  const handleNextStep = async (e: React.FormEvent) => {
     e.preventDefault();
     if (step < 4) {
       setStep(step + 1);
     } else {
-      setBookingSuccess(true);
+      setIsSubmitting(true);
+
+      const templateParams = {
+        to_name: 'Coach David Banks',
+        from_name: `${formData.firstName} ${formData.lastName}`.trim(),
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        user_name: `${formData.firstName} ${formData.lastName}`.trim(),
+        user_email: formData.email,
+        email: formData.email,
+        user_phone: formData.phone,
+        phone: formData.phone,
+        program_name: currentSelectedProgram.title,
+        program_price: `$${currentSelectedProgram.price} CAD`,
+        booking_date: formData.date,
+        booking_time: formData.timeSlot,
+        date: formData.date,
+        time_slot: formData.timeSlot,
+        skill_level: formData.skillLevel,
+        handicap: formData.handicap || 'Not specified',
+        primary_goal: formData.primaryGoal || 'Not specified',
+        notes: formData.notes || 'None',
+        payment_method:
+          formData.paymentMethod === 'card'
+            ? 'Credit / Debit Card'
+            : formData.paymentMethod === 'interac'
+            ? 'Interac e-Transfer'
+            : 'Pay at Session'
+      };
+
+      try {
+        await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          templateParams,
+          EMAILJS_PUBLIC_KEY
+        );
+      } catch (err) {
+        console.error('EmailJS Booking Notification error:', err);
+      } finally {
+        setIsSubmitting(false);
+        setBookingSuccess(true);
+      }
     }
   };
 
@@ -517,10 +566,20 @@ export const BookingPage: React.FC<BookingPageProps> = ({
 
               <button
                 type="submit"
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-brand-purple-600 to-brand-purple-700 hover:from-brand-purple-500 hover:to-brand-purple-600 text-white font-display font-semibold text-xs shadow-purple-glow flex items-center gap-2"
+                disabled={isSubmitting}
+                className="px-8 py-3 rounded-xl bg-gradient-to-r from-brand-purple-600 to-brand-purple-700 hover:from-brand-purple-500 hover:to-brand-purple-600 disabled:opacity-70 disabled:cursor-not-allowed text-white font-display font-semibold text-xs shadow-purple-glow flex items-center gap-2"
               >
-                <span>{step === 4 ? 'Confirm & Reserve Session' : 'Continue to Next Step'}</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Confirming Reservation...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>{step === 4 ? 'Confirm & Reserve Session' : 'Continue to Next Step'}</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </>
+                )}
               </button>
             </div>
           </form>
