@@ -485,21 +485,6 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedP
                     alt={techDetails[activeTechTab].name}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-brand-card/90 backdrop-blur-md border border-brand-cardBorder flex items-center justify-between z-30">
-                    <div>
-                      <span className="text-xs font-bold text-white block">
-                        {techDetails[activeTechTab].name}
-                      </span>
-                      <span className="text-[11px] text-brand-purple-300">
-                        Live Data Capture & Visual Replay
-                      </span>
-                    </div>
-                    <span className="text-xs font-semibold text-emerald-400 flex items-center gap-1">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-                      Active Lab
-                    </span>
-                  </div>
                 </div>
               </div>
             </div>
