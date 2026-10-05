@@ -4,6 +4,7 @@ import type { NavPage } from '../types';
 import { programsData } from '../data/programsData';
 import { testimonialsData } from '../data/testimonialsData';
 import { LuxuryImageCard } from '../components/LuxuryImageCard';
+import { ProgramCardImage } from '../components/ProgramCardImage';
 import {
   Award,
   ArrowRight,
@@ -375,22 +376,16 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedP
               className="rounded-2xl bg-brand-card border border-brand-cardBorder overflow-hidden flex flex-col justify-between hover:border-brand-purple-500/40 transition-all duration-300 group shadow-lg"
             >
               <div>
-                <div className="relative h-52 overflow-hidden bg-brand-dark">
-                  <img
-                    src={prog.image}
-                    alt={prog.title}
-                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/40 to-transparent" />
-                  <div className="absolute top-4 left-4">
-                    <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-brand-purple-600/90 text-white backdrop-blur-sm border border-brand-purple-400/40">
-                      {prog.category === 'junior' ? 'Junior Golf' : prog.category === 'women' ? "Women's Golf" : 'Private Assessment'}
-                    </span>
-                  </div>
-                  <div className="absolute bottom-3 right-4 font-display font-extrabold text-xl text-white">
-                    ${prog.price} <span className="text-xs font-normal text-brand-muted">CAD</span>
-                  </div>
-                </div>
+                <ProgramCardImage
+                  src={prog.image}
+                  alt={prog.title}
+                  category={prog.category}
+                  popular={prog.popular}
+                  price={prog.price}
+                  title={prog.title}
+                  subtitle={prog.subtitle}
+                  heightClass="h-52"
+                />
 
                 <div className="p-6 space-y-4">
                   <div>

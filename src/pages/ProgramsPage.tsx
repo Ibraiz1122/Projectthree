@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import type { NavPage } from '../types';
 import { programsData } from '../data/programsData';
 import { ArrowRight, Sparkles, TrendingDown } from 'lucide-react';
+import { ProgramCardImage } from '../components/ProgramCardImage';
 
 interface ProgramsPageProps {
   setCurrentPage: (page: NavPage) => void;
@@ -121,30 +122,16 @@ export const ProgramsPage: React.FC<ProgramsPageProps> = ({
                 }`}
               >
                 <div>
-                  <div className="relative h-56 overflow-hidden bg-brand-dark">
-                    <img
-                      src={program.image}
-                      alt={program.title}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-card via-brand-card/40 to-transparent" />
-
-                    <div className="absolute top-4 left-4 flex gap-2">
-                      <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-brand-purple-600/90 text-white backdrop-blur-sm border border-brand-purple-400/40">
-                        {program.category.toUpperCase()}
-                      </span>
-                      {program.popular && (
-                        <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500/90 text-brand-dark backdrop-blur-sm">
-                          Popular
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="absolute bottom-3 right-4 font-display font-extrabold text-2xl text-white">
-                      ${program.price}{' '}
-                      <span className="text-xs font-normal text-brand-muted">CAD</span>
-                    </div>
-                  </div>
+                  <ProgramCardImage
+                    src={program.image}
+                    alt={program.title}
+                    category={program.category}
+                    popular={program.popular}
+                    price={program.price}
+                    title={program.title}
+                    subtitle={program.subtitle}
+                    heightClass="h-56"
+                  />
 
                   <div className="p-6 space-y-4">
                     <div>

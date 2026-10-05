@@ -46,7 +46,7 @@ export const LuxuryImageCard: React.FC<LuxuryImageCardProps> = ({
           <div className="w-7 h-[1.5px] bg-gradient-to-r from-brand-purple-400 to-white/30 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-150" />
 
           <h4 className="font-display font-extrabold text-sm sm:text-base md:text-lg text-white tracking-[0.22em] uppercase drop-shadow-[0_2px_12px_rgba(0,0,0,0.9)]">
-            DAVID BANKS GOLF<span className="text-brand-purple-400">.</span>
+            DAVID BANKS GOLF
           </h4>
 
           {subTitle && (
