@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { NavPage } from '../types';
 import { useCart } from '../context/CartContext';
-import { Phone, MapPin, ShoppingBag, Menu, X, ArrowUpRight, Trophy } from 'lucide-react';
+import { ShoppingBag, Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface NavbarProps {
   currentPage: NavPage;
@@ -38,56 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   return (
     <header className="sticky top-0 z-50 w-full transition-all duration-300">
-      {/* 1. Prestige Accreditations & Concierge Strip */}
-      <div className="text-[11px] text-zinc-300 py-1.5 px-3 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
-          {/* Left: Championship Credentials with Clean Titanium Badge */}
-          <div className="flex items-center gap-2.5 truncate">
-            <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-white/[0.08] backdrop-blur-md border border-white/15 text-[10px] font-bold text-white tracking-wide shrink-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
-              <Trophy className="w-3 h-3 text-brand-purple-400" />
-              <span>ONTARIO PGA</span>
-            </div>
-            <span className="text-zinc-200 font-medium text-[11px] truncate flex items-center gap-1.5">
-              <span>2025 PGA Super Senior Champion</span>
-              <span className="text-zinc-600">•</span>
-              <span className="text-zinc-300 hidden md:inline">Top 50 Operation 36 Master Coach</span>
-            </span>
-          </div>
-
-          {/* Right: Live Studio Status & Direct Concierge */}
-          <div className="flex items-center gap-4 text-[11px] shrink-0 font-medium">
-            {/* Live Indicator */}
-            <div className="hidden sm:flex items-center gap-1.5 text-zinc-300">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="text-[10px] uppercase tracking-wider text-emerald-400 font-semibold">Burlington Lab Active</span>
-            </div>
-
-            <span className="hidden sm:inline text-zinc-700">|</span>
-
-            {/* Direct Phone */}
-            <a
-              href="tel:905-464-7777"
-              className="flex items-center gap-1.5 text-zinc-200 hover:text-white transition-colors group"
-              title="Call David Banks directly"
-            >
-              <Phone className="w-3 h-3 text-brand-purple-400 group-hover:text-white transition-colors" />
-              <span className="font-semibold tracking-wide">905-464-7777</span>
-            </a>
-
-            <span className="hidden xs:inline text-zinc-700">|</span>
-
-            <span className="hidden xs:flex items-center gap-1 text-zinc-300">
-              <MapPin className="w-3 h-3 text-brand-purple-400/70" />
-              <span>Burlington, ON</span>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Main Navbar (Clean, transparent, no outer outline border) */}
+      {/* Main Navbar */}
       <div 
         className={`w-full transition-all duration-300 ${
           isScrolled 
