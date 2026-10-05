@@ -11,6 +11,7 @@ interface ProgramCardImageProps {
   title: string;
   subtitle: string;
   heightClass?: string;
+  objectPosition?: string;
   children?: React.ReactNode;
 }
 
@@ -25,6 +26,7 @@ export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
   title,
   subtitle,
   heightClass = 'h-56',
+  objectPosition = 'object-center',
   children
 }) => {
   return (
@@ -33,7 +35,7 @@ export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
       <img
         src={src}
         alt={alt}
-        className="w-full h-full object-cover object-top transform transition-transform duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]"
+        className={`w-full h-full object-cover ${objectPosition} transform transition-transform duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.03]`}
       />
 
       {/* 2. Dark Transparent Gradient (rises smoothly from bottom toward top with charcoal/royal-violet tint) */}
@@ -44,7 +46,7 @@ export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
 
       {/* 3. Ghosted Faded Image Texture (extremely low opacity, slight blur, subtle photographic echo) */}
       <div
-        className="absolute inset-0 bg-cover bg-top opacity-0 group-hover:opacity-15 mix-blend-soft-light filter blur-[0.6px] scale-100 group-hover:scale-[1.04] transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] pointer-events-none"
+        className={`absolute inset-0 bg-cover ${objectPosition.replace('object-', 'bg-')} opacity-0 group-hover:opacity-15 mix-blend-soft-light filter blur-[0.6px] scale-100 group-hover:scale-[1.04] transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] pointer-events-none`}
         style={{ backgroundImage: `url(${src})` }}
         aria-hidden="true"
       />

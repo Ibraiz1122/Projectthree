@@ -126,6 +126,6 @@ export const programsData: CoachingProgram[] = [
       'Strokes Gained breakdown post-round summary'
     ],
     technologyUsed: ['Laser Rangefinder with Slope & Wind', 'Strokes Gained Analysis App'],
-    image: 'https://images.unsplash.com/photo-1592919505780-303950717480?q=80&w=1200&auto=format&fit=crop'
+    image: '/images/on_course_playing_lesson.jpg'
   }
 ];
