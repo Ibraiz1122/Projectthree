@@ -3,12 +3,15 @@ import React from 'react';
 interface ProgramCardImageProps {
   src: string;
   alt: string;
-  category: string;
+  category?: string;
   popular?: boolean;
-  price: number;
+  badge?: string;
+  price?: number;
+  showPrice?: boolean;
   title: string;
   subtitle: string;
   heightClass?: string;
+  children?: React.ReactNode;
 }
 
 export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
@@ -16,10 +19,13 @@ export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
   alt,
   category,
   popular = false,
+  badge,
   price,
+  showPrice = true,
   title,
   subtitle,
-  heightClass = 'h-56'
+  heightClass = 'h-56',
+  children
 }) => {
   return (
     <div className={`relative ${heightClass} overflow-hidden bg-brand-dark select-none`}>
@@ -49,18 +55,33 @@ export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
         aria-hidden="true"
       />
 
-      {/* 5. Existing Badges (remain stable at top-left without jumping, tiny brightness/glow boost) */}
-      <div className="absolute top-4 left-4 flex items-center gap-2 z-10 pointer-events-none">
-        <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-brand-purple-600/90 text-white backdrop-blur-sm border border-brand-purple-400/40 transition-all duration-500 ease-out group-hover:brightness-110 group-hover:shadow-[0_0_12px_rgba(168,85,247,0.35)]">
-          {category === 'junior'
-            ? 'JUNIOR'
-            : category === 'women'
-            ? "WOMEN'S"
-            : category === 'private'
-            ? 'PRIVATE'
-            : category.toUpperCase()}
-        </span>
-        {popular && (
+      {/* 5. Badges (remain stable at top-left without jumping, tiny brightness/glow boost) */}
+      <div className="absolute top-3.5 left-3.5 flex items-center gap-2 z-20 pointer-events-none">
+        {badge ? (
+          <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-black/75 backdrop-blur-md border border-purple-500/40 text-purple-300 shadow-lg transition-all duration-500 ease-out group-hover:brightness-125 group-hover:border-purple-400/70 group-hover:shadow-[0_0_14px_rgba(168,85,247,0.4)]">
+            {badge}
+          </span>
+        ) : category ? (
+          <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-brand-purple-600/90 text-white backdrop-blur-sm border border-brand-purple-400/40 transition-all duration-500 ease-out group-hover:brightness-110 group-hover:shadow-[0_0_12px_rgba(168,85,247,0.35)]">
+            {category === 'junior'
+              ? 'JUNIOR'
+              : category === 'women'
+              ? "WOMEN'S"
+              : category === 'private'
+              ? 'PRIVATE'
+              : category === 'packages'
+              ? 'PACKAGES'
+              : category === 'gear'
+              ? 'GEAR'
+              : category === 'tech'
+              ? 'TECH LAB'
+              : category === 'gift'
+              ? 'GIFT'
+              : category.toUpperCase()}
+          </span>
+        ) : null}
+
+        {popular && !badge && (
           <span className="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-500/90 text-brand-dark backdrop-blur-sm transition-all duration-500 ease-out group-hover:brightness-110 group-hover:shadow-[0_0_10px_rgba(245,158,11,0.4)]">
             POPULAR
           </span>
@@ -68,7 +89,7 @@ export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
       </div>
 
       {/* TEXT REVEAL: Emerges from dark gradient (translates up 14px, fades from opacity 0 to 1) */}
-      <div className="absolute inset-x-0 bottom-3.5 left-4 right-28 pointer-events-none z-10">
+      <div className={`absolute inset-x-0 bottom-3.5 left-4 ${(showPrice && price !== undefined) || children ? 'right-20' : 'right-4'} pointer-events-none z-10`}>
         <div className="transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)]">
           <div className="w-5 h-[1.5px] bg-gradient-to-r from-brand-purple-400 to-transparent mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100" />
           <h4 className="font-display font-extrabold text-[13px] sm:text-sm text-white line-clamp-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
@@ -81,14 +102,19 @@ export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
       </div>
 
       {/* 6. Price at bottom (smoothly moves upward 6-10px and becomes more prominent) */}
-      <div className="absolute bottom-3 right-4 z-10 pointer-events-none transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2">
-        <div className="font-display font-extrabold text-xl sm:text-2xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-          ${price}{' '}
-          <span className="text-xs font-normal text-brand-muted group-hover:text-purple-300 transition-colors duration-500">
-            CAD
-          </span>
+      {showPrice && price !== undefined && (
+        <div className="absolute bottom-3 right-4 z-10 pointer-events-none transform transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-2">
+          <div className="font-display font-extrabold text-xl sm:text-2xl text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+            ${price}{' '}
+            <span className="text-xs font-normal text-brand-muted group-hover:text-purple-300 transition-colors duration-500">
+              CAD
+            </span>
+          </div>
         </div>
-      </div>
+      )}
+
+      {/* Optional Custom Children (e.g. Quick View Eye Button) */}
+      {children}
     </div>
   );
 };

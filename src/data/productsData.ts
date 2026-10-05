@@ -16,7 +16,7 @@ export const productsData: Product[] = [
       'Customized video recap library sent to your phone after each lesson',
       'Valid for 12 months from purchase date'
     ],
-    image: 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?q=80&w=600&auto=format&fit=crop',
+    image: '/images/driving_range_pack.jpg',
     inStock: true
   },
   {
@@ -34,7 +34,7 @@ export const productsData: Product[] = [
       'Direct WhatsApp swing check support between sessions',
       'Complimentary David Banks signature Tour cap'
     ],
-    image: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=600&auto=format&fit=crop',
+    image: '/images/championship_pack.jpg',
     inStock: true
   },
   {
@@ -50,7 +50,7 @@ export const productsData: Product[] = [
       'Audio neuro-feedback drills for accelerated muscle memory',
       'Personalized drill prescription for driving range training'
     ],
-    image: 'https://images.unsplash.com/photo-1563299796-b729d0af54a5?q=80&w=600&auto=format&fit=crop',
+    image: '/images/hackmotion_sensor_lab.jpg',
     inStock: true
   },
   {
@@ -66,7 +66,7 @@ export const productsData: Product[] = [
       'Adjustable snapback strap fits all head sizes',
       'Water and sweat repellent finish'
     ],
-    image: 'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600&auto=format&fit=crop',
+    image: '/images/tour_cap_product.jpg',
     inStock: true
   },
   {
@@ -81,7 +81,7 @@ export const productsData: Product[] = [
       'High-contrast purple trim with custom David Banks emblem',
       'Lint-free and machine washable'
     ],
-    image: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=600&auto=format&fit=crop',
+    image: '/images/tour_towel_product.jpg',
     inStock: true
   },
   {
@@ -97,7 +97,7 @@ export const productsData: Product[] = [
       'Redeemable online or in-person at the Burlington coaching facility',
       'Never expires'
     ],
-    image: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=600&auto=format&fit=crop',
+    image: '/images/gift_certificate_card.jpg',
     inStock: true
   }
 ];

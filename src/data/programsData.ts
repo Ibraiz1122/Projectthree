@@ -86,7 +86,7 @@ export const programsData: CoachingProgram[] = [
       'Guided course management by Ontario PGA Champion David Banks'
     ],
     technologyUsed: ['Operation 36 Scoring Platform', 'BodiTrak Mat', 'Short-Game Wedge Matrix'],
-    image: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?q=80&w=1000&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1593111774240-d529f12cf4bb?q=80&w=1200&auto=format&fit=crop'
   },
   {
     id: 'sensor-biofeedback-lab',
@@ -126,6 +126,6 @@ export const programsData: CoachingProgram[] = [
       'Strokes Gained breakdown post-round summary'
     ],
     technologyUsed: ['Laser Rangefinder with Slope & Wind', 'Strokes Gained Analysis App'],
-    image: 'https://images.unsplash.com/photo-1622398925373-3f91b1e275f5?q=80&w=1000&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1592919505780-303950717480?q=80&w=1200&auto=format&fit=crop'
   }
 ];

@@ -3,6 +3,7 @@ import type { NavPage, Product } from '../types';
 import { productsData } from '../data/productsData';
 import { useCart } from '../context/CartContext';
 import { ShoppingBag, ShieldCheck, Sparkles, Eye, X, CheckCircle2 } from 'lucide-react';
+import { ProgramCardImage } from '../components/ProgramCardImage';
 
 interface ProductsPageProps {
   setCurrentPage: (page: NavPage) => void;
@@ -94,34 +95,36 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ setCurrentPage }) =>
             className="rounded-3xl bg-zinc-900/60 backdrop-blur-xl border border-white/10 hover:border-purple-500/50 overflow-hidden flex flex-col justify-between transition-all duration-300 group shadow-2xl hover:shadow-[0_10px_35px_rgba(168,85,247,0.15)] hover:-translate-y-1"
           >
             <div>
-              {/* Product Image Box */}
-              <div className="relative h-64 overflow-hidden bg-black/80">
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                />
-
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent pointer-events-none" />
-
-                {/* Badge */}
-                {product.badge && (
-                  <div className="absolute top-3.5 left-3.5 z-20">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-mono font-bold uppercase tracking-wider bg-black/70 backdrop-blur-md border border-purple-500/40 text-purple-300 shadow-lg">
-                      {product.badge}
-                    </span>
-                  </div>
-                )}
-
+              {/* Product Image with Luxury Cinematic Hover Interaction */}
+              <ProgramCardImage
+                src={product.image}
+                alt={product.name}
+                category={product.category}
+                badge={product.badge}
+                popular={product.badge === 'Most Popular' || product.badge === 'Best Value'}
+                title={product.name}
+                subtitle={
+                  product.category === 'packages'
+                    ? 'Trackman 4 & HackMotion Lab'
+                    : product.category === 'tech'
+                    ? 'Biofeedback & Sensor Lab'
+                    : product.category === 'gear'
+                    ? 'Official Tour Performance Gear'
+                    : 'VIP Golf Coaching Certificate'
+                }
+                heightClass="h-64"
+                showPrice={false}
+              >
                 {/* Quick View Button */}
                 <button
                   onClick={() => setQuickViewProduct(product)}
-                  className="absolute bottom-3.5 right-3.5 z-20 p-2.5 rounded-xl bg-black/70 text-zinc-300 hover:text-white backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-105"
+                  className="absolute bottom-3.5 right-3.5 z-20 p-2.5 rounded-xl bg-black/75 text-zinc-300 hover:text-white backdrop-blur-md border border-white/15 transition-all hover:bg-white/20 hover:scale-105 active:scale-95 shadow-lg group-hover:border-purple-400/40"
                   title="Quick View Details"
+                  aria-label={`Quick view details for ${product.name}`}
                 >
                   <Eye className="w-4 h-4" />
                 </button>
-              </div>
+              </ProgramCardImage>
 
               {/* Product Info */}
               <div className="p-6 space-y-4">
