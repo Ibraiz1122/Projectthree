@@ -11,6 +11,7 @@ import {
   Sparkles,
   Zap,
   Users,
+  ChevronLeft,
   ChevronRight,
   Calendar,
   Phone,
@@ -26,7 +27,34 @@ interface HomePageProps {
 export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedProgramId }) => {
   const [activeTechTab, setActiveTechTab] = useState<'trackman' | 'hackmotion' | 'boditrak'>('trackman');
   const [statsAnimated, setStatsAnimated] = useState(false);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [itemsPerPage, setItemsPerPage] = useState(3);
   const statsSectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setItemsPerPage(1);
+      } else if (window.innerWidth < 1024) {
+        setItemsPerPage(2);
+      } else {
+        setItemsPerPage(3);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const maxTestimonialIndex = Math.max(0, testimonialsData.length - itemsPerPage);
+
+  const handlePrevTestimonial = () => {
+    setTestimonialIndex((prev) => (prev > 0 ? prev - 1 : maxTestimonialIndex));
+  };
+
+  const handleNextTestimonial = () => {
+    setTestimonialIndex((prev) => (prev < maxTestimonialIndex ? prev + 1 : 0));
+  };
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -582,43 +610,92 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedP
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonialsData.slice(0, 3).map((item) => (
+        <div className="relative group/carousel">
+          {/* Chevron Left Button */}
+          <button
+            onClick={handlePrevTestimonial}
+            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-brand-card/90 backdrop-blur-md border border-brand-purple-500/30 hover:border-brand-purple-400 hover:bg-brand-purple-600/30 text-white flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none"
+            aria-label="Previous testimonials"
+          >
+            <ChevronLeft className="w-5 h-5 text-zinc-300 hover:text-white transition-colors" />
+          </button>
+
+          {/* Chevron Right Button */}
+          <button
+            onClick={handleNextTestimonial}
+            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-brand-card/90 backdrop-blur-md border border-brand-purple-500/30 hover:border-brand-purple-400 hover:bg-brand-purple-600/30 text-white flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none"
+            aria-label="Next testimonials"
+          >
+            <ChevronRight className="w-5 h-5 text-zinc-300 hover:text-white transition-colors" />
+          </button>
+
+          {/* Sliding Track Container */}
+          <div className="overflow-hidden px-1 py-2">
             <div
-              key={item.id}
-              className="p-6 rounded-2xl bg-brand-card border border-brand-cardBorder flex flex-col justify-between hover:border-brand-purple-500/40 transition-all duration-300 shadow-md"
+              className="flex transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              style={{
+                transform: `translateX(-${testimonialIndex * (100 / itemsPerPage)}%)`
+              }}
             >
-              <div className="space-y-4">
-                {/* Rating Stars */}
-                <div className="flex items-center gap-1 text-amber-400">
-                  {[...Array(item.rating)].map((_, i) => (
-                    <span key={i} className="text-sm">★</span>
-                  ))}
-                </div>
+              {testimonialsData.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex-shrink-0 px-3 sm:px-4"
+                  style={{ width: `${100 / itemsPerPage}%` }}
+                >
+                  <div className="h-full p-6 sm:p-7 rounded-2xl bg-brand-card border border-brand-cardBorder flex flex-col justify-between hover:border-brand-purple-500/50 hover:shadow-[0_8px_30px_rgba(168,85,247,0.15)] transition-all duration-300 shadow-md group">
+                    <div className="space-y-4">
+                      {/* Rating Stars */}
+                      <div className="flex items-center gap-1 text-amber-400">
+                        {[...Array(item.rating)].map((_, i) => (
+                          <span key={i} className="text-sm">★</span>
+                        ))}
+                      </div>
 
-                <div className="inline-block px-2.5 py-1 rounded-md bg-brand-surface text-[11px] font-semibold text-emerald-400 border border-emerald-500/20">
-                  {item.handicapChange}
-                </div>
+                      <div className="inline-block px-2.5 py-1 rounded-md bg-brand-surface text-[11px] font-semibold text-emerald-400 border border-emerald-500/20">
+                        {item.handicapChange}
+                      </div>
 
-                <p className="text-xs text-brand-light/90 leading-relaxed italic">
-                  "{item.quote}"
-                </p>
-              </div>
+                      <p className="text-xs text-brand-light/90 leading-relaxed italic">
+                        "{item.quote}"
+                      </p>
+                    </div>
 
-              <div className="flex items-center gap-3 pt-6 border-t border-brand-cardBorder mt-4">
-                <img
-                  src={item.avatar}
-                  alt={item.name}
-                  className="w-10 h-10 rounded-full object-cover border border-brand-purple-500/30"
-                />
-                <div>
-                  <h4 className="font-bold text-xs text-white">{item.name}</h4>
-                  <p className="text-[11px] text-brand-muted">{item.role}</p>
-                  <p className="text-[10px] text-brand-purple-300">{item.location}</p>
+                    <div className="flex items-center gap-3 pt-6 border-t border-brand-cardBorder mt-4">
+                      <img
+                        src={item.avatar}
+                        alt={item.name}
+                        className="w-10 h-10 rounded-full object-cover border border-brand-purple-500/30"
+                      />
+                      <div>
+                        <h4 className="font-bold text-xs text-white group-hover:text-brand-purple-300 transition-colors">
+                          {item.name}
+                        </h4>
+                        <p className="text-[11px] text-brand-muted">{item.role}</p>
+                        <p className="text-[10px] text-brand-purple-300">{item.location}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Dots Indicator */}
+          <div className="flex items-center justify-center gap-2 mt-8">
+            {Array.from({ length: maxTestimonialIndex + 1 }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setTestimonialIndex(i)}
+                className={`h-2 rounded-full transition-all duration-300 focus:outline-none ${
+                  testimonialIndex === i
+                    ? 'w-8 bg-brand-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.6)]'
+                    : 'w-2 bg-white/20 hover:bg-white/40'
+                }`}
+                aria-label={`Go to slide ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-10">
