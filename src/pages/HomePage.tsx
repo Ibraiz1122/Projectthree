@@ -3,6 +3,7 @@ import { smoothGlideTo } from '../utils/scrollSmoother';
 import type { NavPage } from '../types';
 import { programsData } from '../data/programsData';
 import { testimonialsData } from '../data/testimonialsData';
+import { LuxuryImageCard } from '../components/LuxuryImageCard';
 import {
   Award,
   ArrowRight,
@@ -479,13 +480,12 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedP
               </div>
 
               <div className="lg:col-span-6">
-                <div className="relative rounded-2xl overflow-hidden border border-brand-cardBorder shadow-2xl h-80 sm:h-96">
-                  <img
-                    src={techDetails[activeTechTab].image}
-                    alt={techDetails[activeTechTab].name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <LuxuryImageCard
+                  src={techDetails[activeTechTab].image}
+                  alt={techDetails[activeTechTab].name}
+                  subTitle={techDetails[activeTechTab].name}
+                  className="rounded-2xl border border-brand-cardBorder shadow-2xl h-80 sm:h-96"
+                />
               </div>
             </div>
           </div>
