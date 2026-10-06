@@ -18,9 +18,9 @@ export const Footer: React.FC<FooterProps> = ({ setCurrentPage }) => {
               className="text-left group focus:outline-none block"
             >
               <img
-                src="/images/logo.png"
+                src="/images/logo-white.png"
                 alt="David Banks Golf"
-                className="h-20 sm:h-24 w-auto object-contain mb-3 drop-shadow-[0_0_20px_rgba(168,85,247,0.25)] group-hover:scale-105 transition-transform duration-300"
+                className="h-20 sm:h-24 w-auto object-contain mb-3 drop-shadow-[0_0_20px_rgba(168,85,247,0.3)] group-hover:scale-105 transition-transform duration-300"
               />
               <span className="text-[11px] uppercase tracking-[0.2em] text-zinc-500 font-semibold block">
                 PGA of Canada • Ontario Champion

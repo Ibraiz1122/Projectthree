@@ -134,18 +134,26 @@ export const ProgramsPage: React.FC<ProgramsPageProps> = ({
                   />
 
                   <div className="p-6 space-y-4">
-                    <div>
-                      <h3 className="font-display font-bold text-xl text-white group-hover:text-brand-purple-300 transition-colors">
-                        {program.title}
-                      </h3>
-                      <p className="text-xs text-brand-purple-400 font-semibold mt-0.5">
-                        {program.subtitle}
-                      </p>
+                    {/* Program Category Header */}
+                    <div className="flex items-center justify-between pb-3 border-b border-brand-cardBorder">
+                      <div className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+                        <span className="text-[11px] font-mono uppercase tracking-wider text-brand-purple-300 font-bold">
+                          {program.category === 'private'
+                            ? 'Private Coaching'
+                            : program.category === 'junior'
+                            ? 'Junior Development'
+                            : "Women's Instruction"}
+                        </span>
+                      </div>
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-brand-muted font-medium">
+                        PGA Tour Tech
+                      </span>
                     </div>
 
                     <div className="text-xs text-brand-light font-medium bg-brand-surface p-2.5 rounded-lg border border-brand-cardBorder">
-                      <span className="text-brand-muted block text-[10px] uppercase font-bold">
-                        Ideal For:
+                      <span className="text-brand-purple-300 block text-[10px] uppercase font-bold tracking-wider mb-0.5">
+                        Target Skill Level:
                       </span>
                       {program.idealFor}
                     </div>

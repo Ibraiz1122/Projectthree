@@ -128,15 +128,25 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ setCurrentPage }) =>
 
               {/* Product Info */}
               <div className="p-6 space-y-4">
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="font-display font-bold text-lg text-white group-hover:text-purple-300 transition-colors leading-snug">
-                    {product.name}
-                  </h3>
-                  <div className="text-right shrink-0">
+                {/* Pricing & Category Bar */}
+                <div className="flex items-center justify-between pb-3.5 border-b border-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-purple-300 font-bold">
+                      {product.category === 'packages'
+                        ? 'Coaching Package'
+                        : product.category === 'tech'
+                        ? 'Sensor & Tech Lab'
+                        : product.category === 'gear'
+                        ? 'Official Tour Gear'
+                        : 'Gift Certificate'}
+                    </span>
+                  </div>
+                  <div className="flex items-baseline gap-1 text-right shrink-0">
                     <span className="font-display font-extrabold text-2xl text-white">
                       ${product.price}
                     </span>
-                    <span className="block text-[10px] font-mono text-zinc-500 uppercase">
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase font-semibold">
                       CAD
                     </span>
                   </div>
@@ -147,8 +157,8 @@ export const ProductsPage: React.FC<ProductsPageProps> = ({ setCurrentPage }) =>
                 </p>
 
                 {/* Key Features Bullet Points */}
-                <div className="pt-3 border-t border-white/10">
-                  <ul className="space-y-1.5 text-xs text-zinc-400">
+                <div className="pt-1">
+                  <ul className="space-y-1.5 text-xs text-zinc-300">
                     {product.features.slice(0, 3).map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2">
                         <span className="text-purple-400 font-bold">✓</span>

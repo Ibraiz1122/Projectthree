@@ -91,13 +91,13 @@ export const ProgramCardImage: React.FC<ProgramCardImageProps> = ({
       </div>
 
       {/* TEXT REVEAL: Emerges from dark gradient (translates up 14px, fades from opacity 0 to 1) */}
-      <div className={`absolute inset-x-0 bottom-3.5 left-4 ${(showPrice && price !== undefined) || children ? 'right-20' : 'right-4'} pointer-events-none z-10`}>
+      <div className={`absolute inset-x-0 bottom-3.5 left-4 ${(showPrice && price !== undefined) ? 'right-28' : children ? 'right-16' : 'right-4'} pointer-events-none z-10`}>
         <div className="transform translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-600 ease-[cubic-bezier(0.22,1,0.36,1)]">
-          <div className="w-5 h-[1.5px] bg-gradient-to-r from-brand-purple-400 to-transparent mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100" />
-          <h4 className="font-display font-extrabold text-[13px] sm:text-sm text-white line-clamp-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          <div className="w-6 h-[2px] bg-gradient-to-r from-brand-purple-400 to-transparent mb-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100" />
+          <h4 className="font-display font-black text-sm sm:text-base text-white leading-snug line-clamp-2 drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
             {title}
           </h4>
-          <p className="text-[10px] font-mono tracking-wider text-purple-300 line-clamp-1 drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] opacity-90">
+          <p className="text-[11px] font-mono tracking-wider text-purple-300 line-clamp-1 drop-shadow-[0_1px_6px_rgba(0,0,0,0.9)] opacity-95 mt-0.5">
             {subtitle}
           </p>
         </div>

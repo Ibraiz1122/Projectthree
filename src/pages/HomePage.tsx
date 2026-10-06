@@ -388,11 +388,21 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedP
                 />
 
                 <div className="p-6 space-y-4">
-                  <div>
-                    <h3 className="font-display font-bold text-xl text-white group-hover:text-brand-purple-300 transition-colors">
-                      {prog.title}
-                    </h3>
-                    <p className="text-xs text-brand-purple-300/90 font-medium mt-0.5">{prog.subtitle}</p>
+                  {/* Category Header */}
+                  <div className="flex items-center justify-between pb-3 border-b border-brand-cardBorder">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-brand-purple-400 shadow-[0_0_8px_rgba(168,85,247,0.8)]" />
+                      <span className="text-[11px] font-mono uppercase tracking-wider text-brand-purple-300 font-bold">
+                        {prog.category === 'private'
+                          ? 'Private Coaching'
+                          : prog.category === 'junior'
+                          ? 'Junior Development'
+                          : "Women's Instruction"}
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-brand-muted font-medium">
+                      Burlington Lab
+                    </span>
                   </div>
 
                   <p className="text-xs text-brand-muted leading-relaxed line-clamp-3">
@@ -605,11 +615,11 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedP
           </p>
         </div>
 
-        <div className="relative group/carousel">
+        <div className="relative group/carousel px-4 sm:px-12 lg:px-16">
           {/* Chevron Left Button */}
           <button
             onClick={handlePrevTestimonial}
-            className="absolute -left-3 sm:-left-5 lg:-left-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-brand-card/90 backdrop-blur-md border border-brand-purple-500/30 hover:border-brand-purple-400 hover:bg-brand-purple-600/30 text-white flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none"
+            className="absolute left-0 sm:left-1 lg:left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full bg-brand-card/90 backdrop-blur-md border border-brand-purple-500/30 hover:border-brand-purple-400 hover:bg-brand-purple-600/30 text-white flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none"
             aria-label="Previous testimonials"
           >
             <ChevronLeft className="w-5 h-5 text-zinc-300 hover:text-white transition-colors" />
@@ -618,14 +628,14 @@ export const HomePage: React.FC<HomePageProps> = ({ setCurrentPage, setSelectedP
           {/* Chevron Right Button */}
           <button
             onClick={handleNextTestimonial}
-            className="absolute -right-3 sm:-right-5 lg:-right-6 top-1/2 -translate-y-1/2 z-20 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-brand-card/90 backdrop-blur-md border border-brand-purple-500/30 hover:border-brand-purple-400 hover:bg-brand-purple-600/30 text-white flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none"
+            className="absolute right-0 sm:right-1 lg:right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 sm:w-11 sm:h-11 lg:w-12 lg:h-12 rounded-full bg-brand-card/90 backdrop-blur-md border border-brand-purple-500/30 hover:border-brand-purple-400 hover:bg-brand-purple-600/30 text-white flex items-center justify-center shadow-[0_4px_20px_rgba(0,0,0,0.6)] transition-all duration-300 hover:scale-110 active:scale-95 focus:outline-none"
             aria-label="Next testimonials"
           >
             <ChevronRight className="w-5 h-5 text-zinc-300 hover:text-white transition-colors" />
           </button>
 
           {/* Sliding Track Container */}
-          <div className="overflow-hidden px-1 py-2">
+          <div className="overflow-hidden py-2">
             <div
               className="flex transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
               style={{
